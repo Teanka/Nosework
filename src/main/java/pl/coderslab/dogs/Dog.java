@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,7 @@ public class Dog {
     private String breed;
     @NotNull
     private double age;
+    private String idNumber;
     @ManyToOne
     private User user;
     @Enumerated(EnumType.STRING)
@@ -35,9 +37,10 @@ public class Dog {
     @Min(-1)
     @Max(2)
     private int classNo;
-    @ManyToOne
-    private List<DogCompetitionResult> results;
+    @OneToMany
+    private List<DogCompetitionResult> results = new ArrayList<>();
     private int points;
+    private String gender;
 
     public Long getId() {
         return id;
@@ -87,5 +90,51 @@ public class Dog {
         this.user = user;
     }
 
+    public Event.ScentTests getScentTestsPassed() {
+        return scentTestsPassed;
+    }
 
+    public void setScentTestsPassed(Event.ScentTests scentTestsPassed) {
+        this.scentTestsPassed = scentTestsPassed;
+    }
+
+    public int getClassNo() {
+        return classNo;
+    }
+
+    public void setClassNo(int classNo) {
+        this.classNo = classNo;
+    }
+
+    public List<DogCompetitionResult> getResults() {
+        return results;
+    }
+
+    public void setResults(List<DogCompetitionResult> results) {
+        this.results = results;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

@@ -1,10 +1,8 @@
 package pl.coderslab.users;
 
 import org.hibernate.validator.constraints.NotBlank;
-import pl.coderslab.dogs.Dog;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="USERS")
@@ -22,12 +20,9 @@ public class User {
     @NotBlank
     private String email;
     @NotBlank
-    private String password;
-    @NotBlank
     private String city;
-    private String phone;
-    @OneToMany
-    private List<Dog> dogs;
+//    @OneToMany
+//    private List<Dog> dogs = new ArrayList<>();
 
 
 
@@ -71,13 +66,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getCity() {
         return city;
@@ -86,21 +74,4 @@ public class User {
     public void setCity(String city) {
         this.city = city;
     }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public List<Dog> getDogs() {
-        return dogs;
-    }
-
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
-    }
-
 }

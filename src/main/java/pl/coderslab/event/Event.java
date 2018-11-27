@@ -4,6 +4,7 @@ import pl.coderslab.competition.Competition;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,6 @@ public class Event {
     }
 
     @OneToMany
-    private List<Competition> competitionList;
+    private List<Competition> competitionList = new ArrayList<>();
     private boolean passedEvent;
 }

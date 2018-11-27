@@ -5,22 +5,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 
-//public class AppInitializer implements WebApplicationInitializer {
-//    public void onStartup(ServletContext container) throws ServletException {
-//        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-//        ctx.register(AppConfig.class);
-//        ctx.setServletContext(container);
-//        ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
-//        servlet.setLoadOnStartup(1);
-//        servlet.addMapping("/");
-//
-//        FilterRegistration.Dynamic fr = container.addFilter("encodingFilter", new CharacterEncodingFilter());
-//        fr.setInitParameter("encoding", "UTF-8");
-//        fr.setInitParameter("forceEncoding", "true");
-//        fr.addMappingForUrlPatterns(null, true, "/*");
-//    }
-//}
-
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() { return null; }

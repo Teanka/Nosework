@@ -6,6 +6,7 @@ import pl.coderslab.competition.Competition;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Judge {
     private String email;
     private String phone;
     @OneToMany
-    List<Competition> competitions;
+    List<Competition> competitions = new ArrayList<>();
 
     public Long getId() {
         return id;
