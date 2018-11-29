@@ -1,0 +1,40 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: teanka
+  Date: 28.11.18
+  Time: 10:24
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <html>
+    <head><title>header</title></head>
+    <body>
+    <!--<div class="card text-center">&ndash;&gt;-->
+        <!--<div class="card-header">-->
+            <!--<ul class="nav nav-pills card-header-pills">-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link active" href="#">Active</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="#">Link</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<nav class="nav nav-pills nav-justified">-->
+        <!--<a class="nav-item nav-link active" href="#">Active</a>-->
+        <!--<a class="nav-item nav-link" href="#">Link</a>-->
+        <!--<a class="nav-item nav-link" href="#">Link</a>-->
+        <!--<a class="nav-item nav-link disabled" href="#">Disabled</a>-->
+    <!--</nav>-->
+        <!--<div class="card-body">-->
+            <!--<h5 class="card-title">Special title treatment</h5>-->
+            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        <!--</div>-->
+    </body>
+    </html>
+</jsp:root>

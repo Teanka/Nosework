@@ -1,8 +1,11 @@
 package pl.coderslab.users;
 
 import org.hibernate.validator.constraints.NotBlank;
+import pl.coderslab.dogs.Dog;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="USERS")
@@ -21,6 +24,8 @@ public class User {
     private String email;
     @NotBlank
     private String city;
+    @OneToMany
+    private List<Dog> dogs= new ArrayList<>();
 //    @OneToMany
 //    private List<Dog> dogs = new ArrayList<>();
 
@@ -73,5 +78,13 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
     }
 }

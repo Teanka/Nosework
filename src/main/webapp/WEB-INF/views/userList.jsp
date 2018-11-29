@@ -25,18 +25,19 @@
     <div class="card">
         <div class="card-body">
             <table class="table table-hover" border="1px solid black">
-                <thead>
-                </thead>
-                <tbody>
-
-
+                <thead class="bg-warning">
                 <tr>
                     <th>Imię i nazwisko</th>
                     <th>email</th>
                     <th>miasto</th>
-                    <th>Usuwanie</th>
-                    <th>Edycja</th>
+                    <th>Pies</th>
+                    <th>Dodaj psa</th>
                 </tr>
+                </thead>
+                <tbody>
+
+
+
                 <c:forEach var="user" items="${users}">
                     <tr>
                         <td>${user.fullName}</td>

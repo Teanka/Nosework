@@ -2,12 +2,9 @@ package pl.coderslab.judges;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import pl.coderslab.competition.Competition;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="JUDGES")
@@ -19,12 +16,14 @@ public class Judge {
     private String firstName;
     @Size(min=3)
     private String lastName;
+    @Transient
+    private String fullName;
     @Email
     @NotBlank
     private String email;
     private String phone;
-    @OneToMany
-    List<Competition> competitions = new ArrayList<>();
+//    @OneToMany
+//    List<Competition> competitions = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -66,11 +65,11 @@ public class Judge {
         this.phone = phone;
     }
 
-    public List<Competition> getCompetitions() {
-        return competitions;
+    public String getFullName() {
+        return firstName + " " +lastName;
     }
 
-    public void setCompetitions(List<Competition> competitions) {
-        this.competitions = competitions;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

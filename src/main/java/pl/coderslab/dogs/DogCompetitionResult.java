@@ -1,10 +1,8 @@
 package pl.coderslab.dogs;
 
-import org.hibernate.validator.constraints.NotBlank;
-import pl.coderslab.competition.Competition;
+import pl.coderslab.events.Event;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name="DOGRESULTS")
@@ -13,14 +11,14 @@ public class DogCompetitionResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne
     private Dog dog;
     private String place;//bo może być DIS lub NB również
     private int points;
-    @OneToOne
-    private Competition competition;
-    @NotBlank
-    private LocalDate eventDate;
+    @ManyToOne
+    private Event event;
+    private boolean paid;
+//    @NotBlank
 
     public Long getId() {
         return id;
@@ -54,19 +52,21 @@ public class DogCompetitionResult {
         this.points = points;
     }
 
-    public Competition getCompetition() {
-        return competition;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setCompetition(Competition competition) {
-        this.competition = competition;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
-    public LocalDate getEventDate() {
-        return eventDate;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
+
+
 }

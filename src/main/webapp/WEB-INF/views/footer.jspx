@@ -1,0 +1,20 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: teanka
+  Date: 28.11.18
+  Time: 10:24
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <html>
+    <head><title>footer</title></head>
+    <body>
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link active bg-info" href="../.."> Główne menu</a>
+        <a class="nav-item nav-link active bg-warning" href="#">Link</a>
+        <a class="nav-item nav-link active bg-info" href="#">Link</a>
+        <a class="nav-item nav-link active bg-warning" href="#">hmm</a>
+    </nav>
+    <p> Liga nosework,  wersja 1.0, 2018</p></body>
+    </html>
+</jsp:root>

@@ -1,13 +1,11 @@
 package pl.coderslab.dogs;
 
 import org.hibernate.validator.constraints.NotBlank;
-import pl.coderslab.event.Event;
+import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.app.Age;
 import pl.coderslab.users.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,24 +20,17 @@ public class Dog {
     private String name;
     private String officialName;
     private String breed;
-    @NotNull
+    @Age
     private double age;
+    @NotBlank
     private String idNumber;
     @ManyToOne
     private User user;
-    @Enumerated(EnumType.STRING)
-    @Column(length = 10)
-    Event.ScentTests scentTestsPassed;
-    public enum ScentTestsPassed {
-        CYNAMON, POMARAŃCZA, GOŹDZIK
-    }
-    @NotNull
-    @Min(-1)
-    @Max(2)
-    private int classNo;
+    private boolean scentTestsPassed;
     @OneToMany
     private List<DogCompetitionResult> results = new ArrayList<>();
     private int points;
+    @NotEmpty
     private String gender;
 
     public Long getId() {
@@ -90,20 +81,12 @@ public class Dog {
         this.user = user;
     }
 
-    public Event.ScentTests getScentTestsPassed() {
+    public boolean isScentTestsPassed() {
         return scentTestsPassed;
     }
 
-    public void setScentTestsPassed(Event.ScentTests scentTestsPassed) {
+    public void setScentTestsPassed(boolean scentTestsPassed) {
         this.scentTestsPassed = scentTestsPassed;
-    }
-
-    public int getClassNo() {
-        return classNo;
-    }
-
-    public void setClassNo(int classNo) {
-        this.classNo = classNo;
     }
 
     public List<DogCompetitionResult> getResults() {
