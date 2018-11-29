@@ -12,4 +12,6 @@ public interface DogCompResService {
     void delete(Long id);
 
     List<DogCompetitionResult> findAll();
+
+    List<DogCompetitionResult> findByCompetitionTypeAndEventId(String competitionType, Long eventId);
 }

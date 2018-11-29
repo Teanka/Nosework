@@ -12,4 +12,6 @@ public interface DogService {
         void delete(Long id);
 
         List<Dog> findAll();
+
+        List<Dog> findByName(String name);
 }

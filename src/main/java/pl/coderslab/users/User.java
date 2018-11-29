@@ -21,6 +21,7 @@ public class User {
     @Transient
     private String fullName;
     @NotBlank
+    @Column(unique=true)
     private String email;
     @NotBlank
     private String city;

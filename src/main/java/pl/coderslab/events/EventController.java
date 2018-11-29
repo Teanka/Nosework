@@ -51,7 +51,7 @@ public class EventController {
 //    }
 
     @GetMapping("/{id}")
-    public String eventHome(Model model, @PathVariable Long id){
+    public String eventHome(Model model, @PathVariable Long id) {
         Event event = eventService.find(id);
         DogCompetitionResult dogResult = new DogCompetitionResult();
         dogResult.setEvent(event);
@@ -61,37 +61,112 @@ public class EventController {
     }
 
     @PostMapping("/{id}")
-    public String eventHomePost(@ModelAttribute @Valid DogCompetitionResult dogResult, BindingResult result, @PathVariable Long id){
-        if(result.hasErrors()) {
+    public String eventHomePost(@ModelAttribute @Valid DogCompetitionResult dogResult, BindingResult result, @PathVariable Long id) {
+        if (result.hasErrors()) {
             return "failure";
         }
         Dog verifiedDog = null;
         List<Dog> dogs = dogService.findByName(dogResult.getDog().getName());
         Event event = eventService.find(id);
-        for(Dog dog:dogs){
-            if(dog.getUser().getEmail().equals(dogResult.getDog().getUser().getEmail())){
-                verifiedDog = dog;
+        if(dogs!=null&&!dogs.isEmpty()) {
+            for (Dog dog : dogs) {
+                if (dog.getUser().getEmail().equals(dogResult.getDog().getUser().getEmail())) {
+                    verifiedDog = dog;
+                }
             }
+        } else {
+            return "failure";
         }
-        if((dogResult.getDog().isScentTestsPassed())||(dogResult.getCompetitionType().equals("scentTests")));
+        if ((dogResult.getDog().isScentTestsPassed()) || (dogResult.getCompetitionType().equals("scentTests"))) ;
         DogCompetitionResult dogFinalRes = new DogCompetitionResult(verifiedDog, event, dogResult.getCompetitionType());
         dogResultService.save(dogFinalRes);
         return "success";
     }
 
+//    @GetMapping("/{id}/addResult")
+//    public String eventAddResults(Model model, @PathVariable Long id) {
+//        Event event = eventService.findWithResults(id);
+//            model.addAttribute("event", event);
+//        return "eventAddResult";
+//    }
+//    @GetMapping("/{id}/addResult")
+//    public String eventAddResultsPost(@ModelAttribute Event event) {
+//        List<DogCompetitionResult> results = event.getResults();
+//        for(DogCompetitionResult result: results){
+//            dogResultService.save(result);
+//        }
+//        return "success";
+//    }
+
+    @GetMapping("/{id}/result")
+    public String eventResults(Model model, @PathVariable Long id) {
+        Event event = eventService.findWithResults(id);
+        if (!event.isPastEvent()) {
+            return "notYet";
+        }
+        List<DogCompetitionResult> tests = dogResultService.findByCompetitionTypeAndEventId("scentTests", id);
+        if (tests != null && !tests.isEmpty()) {
+            model.addAttribute("tests", tests);
+        }
+        List<DogCompetitionResult> interior = dogResultService.findByCompetitionTypeAndEventId("interior", id);
+        if (interior != null && !interior.isEmpty()) {
+            model.addAttribute("interior", interior);
+        }
+        List<DogCompetitionResult> exterior = dogResultService.findByCompetitionTypeAndEventId("exterior", id);
+        if(exterior!=null&&!exterior.isEmpty()) {
+            model.addAttribute("exterior", exterior);
+        }
+        List<DogCompetitionResult> containers = dogResultService.findByCompetitionTypeAndEventId("containers", id);
+        if(containers!=null&&!containers.isEmpty()) {
+            model.addAttribute("containers", containers);
+        }
+        List<DogCompetitionResult> vehicle = dogResultService.findByCompetitionTypeAndEventId("vehicle", id);
+        if(vehicle!=null&&!vehicle.isEmpty()) {
+            model.addAttribute("vehicle", vehicle);
+        }
+        return "eventResult";
+    }
+
+    @GetMapping("/lastResult")
+    public String getLastResult(Model model){
+        Event event = eventService.getLastPastEvent();
+        List<DogCompetitionResult> tests = dogResultService.findByCompetitionTypeAndEventId("scentTests", event.getId());
+        if (tests != null && !tests.isEmpty()) {
+            model.addAttribute("tests", tests);
+        }
+        List<DogCompetitionResult> interior = dogResultService.findByCompetitionTypeAndEventId("interior", event.getId());
+        if (interior != null && !interior.isEmpty()) {
+            model.addAttribute("interior", interior);
+        }
+        List<DogCompetitionResult> exterior = dogResultService.findByCompetitionTypeAndEventId("exterior", event.getId());
+        if(exterior!=null&&!exterior.isEmpty()) {
+            model.addAttribute("exterior", exterior);
+        }
+        List<DogCompetitionResult> containers = dogResultService.findByCompetitionTypeAndEventId("containers", event.getId());
+        if(containers!=null&&!containers.isEmpty()) {
+            model.addAttribute("containers", containers);
+        }
+        List<DogCompetitionResult> vehicle = dogResultService.findByCompetitionTypeAndEventId("vehicle", event.getId());
+        if(vehicle!=null&&!vehicle.isEmpty()) {
+            model.addAttribute("vehicle", vehicle);
+        }
+        return "eventResult";
+    }
+
+
     @GetMapping("/add")
-    public String events(Model model){
+    public String events(Model model) {
         model.addAttribute("event", new Event());
         model.addAttribute("judges", getJudges());
         return "addEvent";
     }
 
     @PostMapping("/add")
-    public String eventsPost(@ModelAttribute @Valid Event event, BindingResult result){
-        if(result.hasErrors()) {
-           return "addEvent";
+    public String eventsPost(@ModelAttribute @Valid Event event, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addEvent";
         }
-        if(event.isContainers()||event.isExterior()||event.isInterior()||event.isVehicle())
+        if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle())
             event.setExams(true);
         eventService.save(event);
         return "redirect:../";

@@ -9,7 +9,11 @@ public interface EventService {
 
     Event find(Long id);
 
+    Event findWithResults(Long id);
+
     void delete(Long id);
 
     List<Event> findAll();
+
+    Event getLastPastEvent();
 }

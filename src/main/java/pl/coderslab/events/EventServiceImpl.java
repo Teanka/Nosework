@@ -1,5 +1,6 @@
 package pl.coderslab.events;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,16 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event find(Long id) {
-        return eventRepository.getOne(id);
+//        return eventRepository.getOne(id);
+         Event event = eventRepository.findById(id).orElse(null);
+         return event;
+    }
+
+    @Override
+    public Event findWithResults(Long id) {
+        Event event = find(id);
+        Hibernate.initialize(event.getResults());
+        return event;
     }
 
     @Override
@@ -36,5 +46,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> findAll() {
         return eventRepository.findAll();
+    }
+
+    @Override
+    public Event getLastPastEvent() {
+        return eventRepository.getLastPastEvent();
     }
 }

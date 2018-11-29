@@ -31,7 +31,7 @@ public class Event {
     private String description;
     @ManyToOne
     private Judge judge;
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     private List<DogCompetitionResult> results = new ArrayList<>();
 
     private boolean scentTests;

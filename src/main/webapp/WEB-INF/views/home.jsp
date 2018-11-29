@@ -39,6 +39,7 @@
                     <th>MIEJSCE</th>
                     <th>SĘDZIUJE</th>
                     <th>DLA ZAREJESTROWANYCH</th>
+                    <th>WYNIKI</th>
                 </tr></thead>
                 <c:forEach var="event" items="${events}">
                     <tr>
@@ -60,10 +61,17 @@
                         </td>
                         <td>${event.judge.fullName}</td>
                         <td><a href="/events/${event.id}" class="btn btn-info">Zapisz się</a></td>
+                        <%--<c:if test="${event.pastEvent}">--%>
+                        <td><a href="/events/${event.id}/result" class="btn btn-info">Wyniki</a></td>
+                        <%--</c:if>--%>
+                        <%--<c:if test="${!event.pastEvent}">--%>
+                                <%--W przyszłości--%>
+                        <%--</c:if>--%>
                     </tr>
                 </c:forEach>
             </table>
             <p> <a href="../dogs/add/" class="btn btn-warning">Nowy użytkownik</a></p>
+            <img align="center" src="../../images/k9-nose-work.png"/>
 
             <%@ include file="footer.jspx"%>
         </div>

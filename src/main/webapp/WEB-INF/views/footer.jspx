@@ -10,10 +10,10 @@
     <head><title>footer</title></head>
     <body>
     <nav class="nav nav-pills nav-justified">
-        <a class="nav-item nav-link active bg-info" href="../.."> Główne menu</a>
-        <a class="nav-item nav-link active bg-warning" href="#">Link</a>
-        <a class="nav-item nav-link active bg-info" href="#">Link</a>
-        <a class="nav-item nav-link active bg-warning" href="#">hmm</a>
+        <a class="nav-item nav-link active bg-info" href="../.."> Lista aktualnych zawodów</a>
+        <a class="nav-item nav-link active bg-warning" href="../events/lastResult">Wyniki ostatnich zawodów</a>
+        <a class="nav-item nav-link active bg-info" href="../dogs/add/" >Nowy użytkownik</a>
+        <!--<a class="nav-item nav-link active bg-warning" href="#">hmm</a>-->
     </nav>
     <p> Liga nosework,  wersja 1.0, 2018</p></body>
     </html>

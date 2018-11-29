@@ -37,4 +37,9 @@ public class DogCompResServiceImpl implements DogCompResService {
     public List<DogCompetitionResult> findAll() {
         return dogCompResRepository.findAll();
     }
+
+    @Override
+    public List<DogCompetitionResult> findByCompetitionTypeAndEventId(String competitionType, Long eventId) {
+        return dogCompResRepository.findByCompetitionTypeAndEventId(competitionType,eventId);
+    }
 }

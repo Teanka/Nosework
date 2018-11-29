@@ -3,6 +3,7 @@ package pl.coderslab.dogs;
 import pl.coderslab.events.Event;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="DOGRESULTS")
@@ -15,10 +16,20 @@ public class DogCompetitionResult {
     private Dog dog;
     private String place;//bo może być DIS lub NB również
     private int points;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     private Event event;
     private boolean paid;
-//    @NotBlank
+    @NotNull
+    private String competitionType;
+
+    public DogCompetitionResult() {
+    }
+
+    public DogCompetitionResult(Dog dog, Event event, String competitionType) {
+        this.dog = dog;
+        this.event = event;
+        this.competitionType = competitionType;
+    }
 
     public Long getId() {
         return id;
@@ -68,5 +79,11 @@ public class DogCompetitionResult {
         this.paid = paid;
     }
 
+    public String getCompetitionType() {
+        return competitionType;
+    }
 
+    public void setCompetitionType(String competitionType) {
+        this.competitionType = competitionType;
+    }
 }

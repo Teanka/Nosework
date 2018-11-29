@@ -1,31 +1,27 @@
 <%--
   Created by IntelliJ IDEA.
   User: teanka
-  Date: 28.11.18
-  Time: 21:10
+  Date: 29.11.18
+  Time: 10:31
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>title</title>
+    <title>Title</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/main.css" rel="stylesheet"/>
     <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../css/main.css" rel="stylesheet"/>
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/main.css" rel="stylesheet"/>
 </head>
-<body>
-<div class="card border-info mb-3">
+<body><div class="card border-warning mb-3">
     <div class="card-body">
 
         <div class="text-center">
-            <h3>Zapisano do bazy.</h3>
-            <%--<p>Możecie już zapisać się na zawody!</p>--%>
+            <h3>Niepoprawne dane. </h3>
+            <p>Czy na pewno zapisywałeś się już wcześniej na zawody?</p>
 
-            <a href="../../" class="btn-info btn-lg"> Powrót do strony głównej </a>
-            <img src="../../../../images/zapachy.jpg"/>
+            <p><a href="../../" class="btn btn-warning" role="button"> Powrót do strony głównej </a></p>
         </div>
     </div>
 </div>
