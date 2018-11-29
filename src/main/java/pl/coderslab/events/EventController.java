@@ -9,6 +9,7 @@ import pl.coderslab.dogs.Dog;
 import pl.coderslab.dogs.DogCompResService;
 import pl.coderslab.dogs.DogCompetitionResult;
 import pl.coderslab.dogs.DogService;
+import pl.coderslab.email.MailSender;
 import pl.coderslab.judges.Judge;
 import pl.coderslab.judges.JudgeService;
 import pl.coderslab.users.UserService;
@@ -19,6 +20,9 @@ import java.util.List;
 @RequestMapping("/events")
 @Controller
 public class EventController {
+
+    @Autowired
+    private MailSender mailSender;
 
     @Autowired
     private EventService eventService;
@@ -80,6 +84,14 @@ public class EventController {
         if ((dogResult.getDog().isScentTestsPassed()) || (dogResult.getCompetitionType().equals("scentTests"))) ;
         DogCompetitionResult dogFinalRes = new DogCompetitionResult(verifiedDog, event, dogResult.getCompetitionType());
         dogResultService.save(dogFinalRes);
+        String from = "atrol@poczta.onet.pl";
+        String to = dogFinalRes.getDog().getUser().getEmail();
+        String subject = dogFinalRes.getEvent().getName();
+        String msg = "Gratuluję pomyślnego zapisania się na "+dogFinalRes.getEvent().getName()+" w konkurencji " +
+                dogFinalRes.getCompetitionType() +". \n Wpłatę w wysokości 40 zł prosimy wysłać na konto: \n" +
+                "6786567436768789088988 YYY xxxx PKO Bank Polski. \n Życzymy udanego staru w zawodach! \n Zespół Liga Nosework.";
+
+        mailSender.sendMail(from, to, subject, msg);
         return "success";
     }
 
