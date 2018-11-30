@@ -15,6 +15,10 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../..css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css">
     <%--<link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">--%>
     <%--<link href='<c:url value="/css/main.css"/>' rel="stylesheet">--%>
 </head>
@@ -23,7 +27,7 @@
 
 <div class="container-fluid">
 
-    <h3 class="header">Witaj na stronie ligi nosework!</h3>
+    <h3 class="header">Panel admina</h3>
 
     <div class="card border-danger mb-3" >
         <div class="card-body">
@@ -65,18 +69,18 @@
                         </td>
                         <td>${event.judge.fullName}</td>
 
-                        <td><a href="admin/events/${event.id}/edit" class="btn btn-success">Edytuj wydarzenie</a></td>
+                        <td><a href="/admin/events/edit/${event.id}" class="btn btn-success">Edytuj wydarzenie</a></td>
                             <%--</c:if>--%>
                             <%--<c:if test="${!event.pastEvent}">--%>
                             <%--W przyszłości--%>
                             <%--</c:if>--%>
-                        <td><a href="admin/events/${event.id}/result" class="btn btn-success">Wyniki</a></td>
-                        <td><a href="admin/events/${event.id}/delete" class="btn btn-danger">Usuń wydarzenie</a></td>
+                        <td><a href="/admin/events/result/${event.id}" class="btn btn-success">Wyniki</a></td>
+                        <td><a href="/events/delete/${event.id}" class="btn btn-danger">Usuń wydarzenie</a></td>
                     </tr>
                 </c:forEach>
             </table>
 
-            <%@ include file="footer.jspx"%>
+            <%@ include file="footerAdmin.jspx"%>
         </div>
     </div>
 </div>

@@ -1,0 +1,22 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: teanka
+  Date: 30.11.18
+  Time: 09:18
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <html>
+    <head><title>footer</title></head>
+    <body>
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link active bg-info" href="../admin/events"> Lista aktualnych zawodów</a>
+        <a class="nav-item nav-link active bg-warning" href="../events/lastResult">Wyniki ostatnich zawodów</a>
+        <a class="nav-item nav-link active bg-info" href="../admin/addUser/" >Nowy użytkownik</a>
+        <a class="nav-item nav-link active bg-warning" href="../admin/addJudge/">Nowy sędzia</a>
+        <a class="nav-item nav-link active bg-info" href="../admin/addEvent"> Nowe zawody</a>
+        <a class="nav-item nav-link active bg-warning" href="../admin/addJudge/">Nowy sędzia</a>
+    </nav>
+    <p> Liga nosework,  wersja 1.0, 2018</p></body>
+    </html>
+</jsp:root>

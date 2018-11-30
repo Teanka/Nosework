@@ -110,23 +110,29 @@ public class AdminController {
     public String adminEventsList() {
         return "adminEventList";
     }
-    @GetMapping("/delete/{id}")
+    @GetMapping("events/delete/{id}")
     public String deleteEvent(@PathVariable Long id){
         eventService.delete(id);
         return "redirect:../events";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("events/edit/{id}")
     public String editEvent(Model model, @PathVariable Long id){
         Event event = eventService.find(id);
         model.addAttribute(event);
         return "addEvent";
     }
 
-    @PostMapping("/edit/{id}")
-    public String editEventPost(@PathVariable Long id, @ModelAttribute Event event){
+    @PostMapping("events/edit/{id}")
+    public String editEventPost(@PathVariable Long id, @ModelAttribute @Valid Event event, BindingResult result){
+        if(result.hasErrors()){
+            return "addEvent";
+        }
+        if(event.getId()==null){
+            event.setId(id);
+        }
         eventService.update(event);
-        return "redirect:../../admin/events";
+        return "redirect:../../events";
     }
 
 
