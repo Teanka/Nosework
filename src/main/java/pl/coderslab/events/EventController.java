@@ -49,17 +49,12 @@ public class EventController {
         return judgeService.findAll();
     }
 
-//    @ModelAttribute("event")
-//    Event getEvent(Long id) {
-//        return eventService.find(id);
-//    }
 
     @GetMapping("/{id}")
     public String eventHome(Model model, @PathVariable Long id) {
         Event event = eventService.find(id);
         DogCompetitionResult dogResult = new DogCompetitionResult();
         dogResult.setEvent(event);
-//        model.addAttribute("event", event);
         model.addAttribute("dogResult", dogResult);
         return "eventHome";
     }
@@ -181,7 +176,7 @@ public class EventController {
         if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle())
             event.setExams(true);
         eventService.save(event);
-        return "redirect:../";
+        return "redirect:../admin/";
     }
 
 }
