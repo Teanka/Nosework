@@ -22,14 +22,14 @@ public class DogCompetitionResult {
     @NotNull
     private String competitionType;
 
-    public DogCompetitionResult() {
-    }
+//    public DogCompetitionResult() {
+//    }
 
-    public DogCompetitionResult(Dog dog, Event event, String competitionType) {
-        this.dog = dog;
-        this.event = event;
-        this.competitionType = competitionType;
-    }
+//    public DogCompetitionResult(Dog dog, Event event, String competitionType) {
+//        this.dog = dog;
+//        this.event = event;
+//        this.competitionType = competitionType;
+//    }
 
     public Long getId() {
         return id;

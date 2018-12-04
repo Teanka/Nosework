@@ -25,7 +25,8 @@ public class DogCompResServiceImpl implements DogCompResService {
 
     @Override
     public DogCompetitionResult find(Long id) {
-        return dogCompResRepository.getOne(id);
+//        return dogCompResRepository.getOne(id);
+        return dogCompResRepository.findById(id).orElse(null);
     }
 
     @Override

@@ -18,15 +18,15 @@
     <div class="card-body">
 
         <div class="text-left">
+            <p><a href="../admin/events" class="btn btn-warning" role="button"> Lista zawodów</a></p>
             <p><a href="../admin/addEvent" class="btn btn-warning" role="button"> Dodaj wydarzenie </a></p>
             <p><a href="../admin/addJudge" class="btn btn-warning" role="button"> Dodaj sędziego </a></p>
             <p><a href="../admin/addUser" class="btn btn-warning" role="button"> Dodaj użytkownika i psa </a></p>
-            <p><a href="../admin/events" class="btn btn-warning" role="button"> Lista zawodów</a></p>
             <p><a href="../events/add" class="btn btn-warning" role="button"> Lista sędziów</a></p>
             <p><a href="../events/add" class="btn btn-warning" role="button"> Lista użytkowników</a></p>
         </div>
     </div>
 </div>
-<%@ include file="footer.jspx"%>
+<%@ include file="footerAdmin.jspx"%>
 </body>
 </html>

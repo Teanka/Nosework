@@ -15,7 +15,6 @@
         <a class="nav-item nav-link active bg-info" href="../admin/addUser/" >Nowy użytkownik</a>
         <a class="nav-item nav-link active bg-warning" href="../admin/addJudge/">Nowy sędzia</a>
         <a class="nav-item nav-link active bg-info" href="../admin/addEvent"> Nowe zawody</a>
-        <a class="nav-item nav-link active bg-warning" href="../admin/addJudge/">Nowy sędzia</a>
     </nav>
     <p> Liga nosework,  wersja 1.0, 2018</p></body>
     </html>

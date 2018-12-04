@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dogs.Dog;
 import pl.coderslab.dogs.DogCompResService;
+import pl.coderslab.dogs.DogCompetitionResult;
 import pl.coderslab.dogs.DogService;
 import pl.coderslab.email.MailSender;
 import pl.coderslab.events.Event;
@@ -68,8 +69,9 @@ public class AdminController {
         if (result.hasErrors()) {
             return "addEvent";
         }
-        if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle())
+        if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle()) {
             event.setExams(true);
+        }
         eventService.save(event);
         return "redirect:../admin/";
     }
@@ -86,7 +88,7 @@ public class AdminController {
             return "addJudge";
         }
         judgeService.save(judge);
-        return "redirect:../admin/";
+        return "redirect:../";
     }
 
     @GetMapping("/addUser")
@@ -113,7 +115,7 @@ public class AdminController {
     @GetMapping("events/delete/{id}")
     public String deleteEvent(@PathVariable Long id){
         eventService.delete(id);
-        return "redirect:../events";
+        return "redirect:../";
     }
 
     @GetMapping("events/edit/{id}")
@@ -134,6 +136,72 @@ public class AdminController {
         eventService.update(event);
         return "redirect:../../events";
     }
+
+    @GetMapping("/{id}")
+    public String eventResults(Model model, @PathVariable Long id) {
+        Event event = eventService.findWithResults(id);
+        List<DogCompetitionResult> tests = dogResultService.findByCompetitionTypeAndEventId("scentTests", id);
+        if (tests != null && !tests.isEmpty()) {
+            model.addAttribute("tests", tests);
+        }
+        List<DogCompetitionResult> interior = dogResultService.findByCompetitionTypeAndEventId("interior", id);
+        if (interior != null && !interior.isEmpty()) {
+            model.addAttribute("interior", interior);
+        }
+        List<DogCompetitionResult> exterior = dogResultService.findByCompetitionTypeAndEventId("exterior", id);
+        if(exterior!=null&&!exterior.isEmpty()) {
+            model.addAttribute("exterior", exterior);
+        }
+        List<DogCompetitionResult> containers = dogResultService.findByCompetitionTypeAndEventId("containers", id);
+        if(containers!=null&&!containers.isEmpty()) {
+            model.addAttribute("containers", containers);
+        }
+        List<DogCompetitionResult> vehicle = dogResultService.findByCompetitionTypeAndEventId("vehicle", id);
+        if(vehicle!=null&&!vehicle.isEmpty()) {
+            model.addAttribute("vehicle", vehicle);
+        }
+        return "adminEventResultList";
+    }
+
+    @GetMapping("{eId}/delete/{id}")
+    public String deleteResult(@PathVariable Long eId, @PathVariable Long id){
+        dogResultService.delete(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("{eId}/edit/{id}")
+    public String editResult(Model model, @PathVariable Long id){
+        DogCompetitionResult dogResult = dogResultService.find(id);
+        model.addAttribute("dogResult", dogResult);
+        return "editDogRes1";
+    }
+
+    @PostMapping("{eId}/edit/{id}")
+    public String editResultPost(@PathVariable Long id, @ModelAttribute @Valid DogCompetitionResult dogResult, BindingResult result){
+//        if(result.hasErrors()){
+//            return "editDogRes1";
+//        }
+        if(dogResult.getId()==null){
+            dogResult.setId(id);
+        }
+        Dog dog = dogResult.getDog();
+        List<DogCompetitionResult> dogsResults= dog.getResults();
+        dogsResults.add(dogResult);
+        dog.setResults(dogsResults);
+        if(dogResult.getCompetitionType().equals("scentTests")&dogResult.getPoints()==1){
+            dog.setScentTestsPassed(true);
+        }
+        if(dogResult.getPoints()>0){
+            int points = dog.getPoints();
+            points+=dogResult.getPoints();
+            dog.setPoints(points);
+        }
+        dogService.update(dog);
+        dogResultService.update(dogResult);
+        return "redirect:../";
+    }
+
+
 
 
 //    @GetMapping("/{id}/addResult")

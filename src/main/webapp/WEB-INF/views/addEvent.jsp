@@ -13,6 +13,11 @@
     <title>Dodaj wydarzenie nosework</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/main.css" rel="stylesheet"/>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/main.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../css/main.css" rel="stylesheet"/>
+
 </head>
 <body>
 <form:form method="post" modelAttribute="event">

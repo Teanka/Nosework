@@ -77,7 +77,10 @@ public class EventController {
             return "failure";
         }
         if ((dogResult.getDog().isScentTestsPassed()) || (dogResult.getCompetitionType().equals("scentTests"))) ;
-        DogCompetitionResult dogFinalRes = new DogCompetitionResult(verifiedDog, event, dogResult.getCompetitionType());
+        DogCompetitionResult dogFinalRes = new DogCompetitionResult();
+        dogFinalRes.setDog(verifiedDog);
+        dogFinalRes.setEvent(event);
+        dogFinalRes.setCompetitionType(dogResult.getCompetitionType());
         dogResultService.save(dogFinalRes);
         String from = "atrol@poczta.onet.pl";
         String to = dogFinalRes.getDog().getUser().getEmail();
@@ -173,8 +176,9 @@ public class EventController {
         if (result.hasErrors()) {
             return "addEvent";
         }
-        if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle())
+        if (event.isContainers() || event.isExterior() || event.isInterior() || event.isVehicle()) {
             event.setExams(true);
+        }
         eventService.save(event);
         return "redirect:../admin/";
     }
